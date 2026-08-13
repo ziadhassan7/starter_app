@@ -1,61 +1,104 @@
 import 'package:flutter/material.dart';
 import 'package:path_drawing/path_drawing.dart';
-
 import '../../core/styles/app_colors.dart';
 import 'button.dart';
 
 class CustomNavBar extends StatelessWidget {
-  const CustomNavBar({super.key, required this.fabSize});
+  const CustomNavBar({super.key, required this.fabSize, required this.onFabPressed});
 
   final double fabSize;
+  final Function() onFabPressed;
 
   @override
   Widget build(BuildContext context) {
-    return  Padding(
-      padding: EdgeInsets.symmetric(horizontal: 18, vertical: 18),
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          /// Bottom Sheet Shape with icons
-          ClipPath(
-            clipper: BottomBarClipper(),
-            child: Container(
-              height: 68,
-              width: double.infinity,
-              color: Colors.white,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  NavigationItem(index: 0, icon: 'assets/icons/home.svg'),
-                  NavigationItem(index: 1, icon: 'assets/icons/gemini.svg'),
+    return  Theme(
+      data: Theme.of(context).copyWith(
+        splashFactory: NoSplash.splashFactory,
+        highlightColor: Colors.transparent,
+        splashColor: Colors.transparent,
+      ),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 18, vertical: 18),
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            /// Bottom Sheet Shape with icons
+            ClipPath(
+              clipper: BottomBarClipper(),
+              child: Container(
+                height: 68,
+                width: double.infinity,
+                color: Colors.white,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    NavigationItem(
+                      index: 0,
+                      icon: 'assets/icons/home.svg',
+                    ),
+                    NavigationItem(
+                      index: 1,
+                      icon: 'assets/icons/gemini.svg',
+                    ),
 
-                  SizedBox(width: 70,),
+                    SizedBox(width: 70,),
 
-                  NavigationItem(index: 2, icon: 'assets/icons/plan.svg'),
-                  NavigationItem(index: 3, icon: 'assets/icons/profile.svg'),
-                ],
-              ), // your nav icons
+                    NavigationItem(
+                      index: 2,
+                      icon: 'assets/icons/plan.svg',
+                    ),
+                    NavigationItem(
+                      index: 3,
+                      icon: 'assets/icons/profile.svg',
+                    ),
+                  ],
+                ), // your nav icons
+              ),
             ),
-          ),
 
-          /// Fab icon
-          Positioned(
-            left: 1, right: 1,
-            bottom: fabSize+6,
+            /// Fab icon
+            FabButton(
+              fabSize: fabSize,
+              onPressed: onFabPressed,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class FabButton extends StatelessWidget {
+  const FabButton({super.key, required this.fabSize, required this.onPressed});
+
+  final double fabSize;
+  final Function() onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      right: 0, left: 0,
+      bottom: fabSize/2.5,
+      child: Center(
+        child: SizedBox(
+          width: fabSize, height: fabSize,
+          child: InkWell(
+            onTap: onPressed,
+
             child: Container(
-              padding: EdgeInsets.all(fabSize),
               decoration: BoxDecoration(
                   color: AppColors.primary,
                   shape: BoxShape.circle
               ),
               child: Icon(Icons.add, color: Colors.white,),
             ),
-          )
-        ],
+          ),
+        ),
       ),
     );
   }
 }
+
 
 
 class BottomBarClipper extends CustomClipper<Path> {

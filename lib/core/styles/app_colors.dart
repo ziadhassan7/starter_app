@@ -10,12 +10,16 @@ class AppColors {
 
   // --- Base colors ---
   static Color get background => isDark ? backgroundDark : backgroundLight;
+  static Color get foreground => isDark ? foregroundDark : foregroundLight;
   static Color get primary => isDark ? primaryDark : primaryLight;
   static Color get text => isDark ? textDark : textLight;
 
   // --- Raw palette ---
   static const backgroundLight = Color(0xFFEBEBEB);
   static const backgroundDark = Color(0xFF292929);
+
+  static const foregroundLight = Color(0xFFFFFFFF);
+  static const foregroundDark = Color(0xFF434343);
 
   static const primaryLight = Color(0xFF28997F);
   static const primaryDark = Color(0xFFAADB8B);

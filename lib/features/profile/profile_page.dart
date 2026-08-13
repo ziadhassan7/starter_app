@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../core/styles/app_text_styles.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -9,7 +10,10 @@ class ProfilePage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: .center,
         children: [
-          Center(child: Text("Profile Page"))
+          Center(child: Text(
+            "Profile Page",
+            style: AppTextStyles.body,
+          ))
         ],
       ),
     );

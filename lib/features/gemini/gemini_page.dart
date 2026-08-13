@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../core/styles/app_text_styles.dart';
 
 class GeminiPage extends StatelessWidget {
   const GeminiPage({super.key});
@@ -10,7 +11,10 @@ class GeminiPage extends StatelessWidget {
         mainAxisAlignment: .center,
         children: [
           Center(
-              child: Text("Gemini Page"))
+              child: Text(
+                "Gemini Page",
+                style: AppTextStyles.body,
+              ))
         ],
       ),
     );

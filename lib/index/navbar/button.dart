@@ -21,10 +21,10 @@ class NavigationItem extends StatelessWidget {
       onTap: (){
         context.read<NavBarCubit>().navigate(index: index);
       },
-      child: AnimatedSwitcher(
-        duration: const Duration(milliseconds: 350),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        child: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 350),
           child: SvgPicture.asset(
             icon,
             key: ValueKey(isSelected), // triggers cross-fade on change

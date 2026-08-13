@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../core/styles/app_text_styles.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -9,7 +10,10 @@ class HomePage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: .center,
         children: [
-          Center(child: Text("Home Page"))
+          Center(child: Text(
+            "Home Page",
+            style: AppTextStyles.body,
+          ))
         ],
       ),
     );

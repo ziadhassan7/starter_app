@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../core/router/app_navigator.dart';
 import '../core/styles/app_colors.dart';
 import '../features/gemini/gemini_page.dart';
 import '../features/home/home_page.dart';
+import '../features/places/presentation/new_place_page.dart';
 import '../features/plan/planning_page.dart';
 import '../features/profile/profile_page.dart';
 import 'controller/nav_bar_cubit.dart';
@@ -31,13 +33,17 @@ class _MainPage extends StatefulWidget {
 
 class _MainPageState extends State<_MainPage> {
 
-
   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
       backgroundColor: AppColors.background,
-      bottomNavigationBar: CustomNavBar(fabSize: 16),
+      bottomNavigationBar: CustomNavBar(
+        fabSize: 56,
+        onFabPressed: (){
+          AppNavigator.navigate(context, NewPlacePage());
+        },
+      ),
 
       body: BlocBuilder<NavBarCubit, int>(
         builder: (context, currentIndex) {
