@@ -28,7 +28,7 @@ class CustomNavBar extends StatelessWidget {
               child: Container(
                 height: 68,
                 width: double.infinity,
-                color: Colors.white,
+                color: AppColors.foreground,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -90,7 +90,7 @@ class FabButton extends StatelessWidget {
                   color: AppColors.primary,
                   shape: BoxShape.circle
               ),
-              child: Icon(Icons.add, color: Colors.white,),
+              child: Icon(Icons.add_rounded, color: AppColors.foreground, size: 28,),
             ),
           ),
         ),

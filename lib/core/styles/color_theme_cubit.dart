@@ -1,23 +1,27 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'theme_shared_pref.dart';
+import '../hive/app_settings_local_data_source.dart';
 
 
-class ThemeCubit extends Cubit<bool>{
-  ThemeCubit() : super(getDefaultColor()); //light theme
+class ThemeCubit extends Cubit<ThemeMode>{
 
-  static bool getDefaultColor(){
-    return ThemePref.getTheme();
+  static final AppSettingsLocalDataSource _dataSource = AppSettingsLocalDataSource();
+
+  ThemeCubit() : super(_getDefaultColor());
+
+  // set the theme
+  void setTheme(ThemeMode themeMode){
+    _dataSource.setThemeMode(themeMode.name);
+
+    emit(themeMode);
   }
 
-  void toggleTheme() {
-    bool isDark = ThemePref.getTheme();
+  // get current/default theme
+  static ThemeMode _getDefaultColor(){
 
-    ThemePref.updateTheme(!isDark);
-    emit(!isDark);
-  }
+    String currentThemeString = _dataSource.getTheme()
+        ?? ThemeMode.light.name; // default is LightMode
 
-  void switchThemeTo({required bool isDark}){
-    ThemePref.updateTheme(isDark);
-    emit(isDark);
+    return ThemeMode.values.byName(currentThemeString);
   }
 }

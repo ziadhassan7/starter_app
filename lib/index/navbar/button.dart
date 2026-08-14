@@ -21,14 +21,17 @@ class NavigationItem extends StatelessWidget {
       onTap: (){
         context.read<NavBarCubit>().navigate(index: index);
       },
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12),
-        child: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 350),
-          child: SvgPicture.asset(
-            icon,
-            key: ValueKey(isSelected), // triggers cross-fade on change
-            color: isSelected ? AppColors.primary : Colors.black54,
+      child: Opacity(
+        opacity: isSelected ? 1 : 0.6,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          child: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 350),
+            child: SvgPicture.asset(
+              icon,
+              key: ValueKey(isSelected), // triggers cross-fade on change
+              color: isSelected ? AppColors.primary : AppColors.text,
+            ),
           ),
         ),
       ),

@@ -1,0 +1,4 @@
+{
+  "@@locale": "ar",
+  "welcomeMessage": "مرحبًا، {username}!"
+}
