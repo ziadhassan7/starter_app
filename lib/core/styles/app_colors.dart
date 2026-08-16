@@ -42,6 +42,10 @@ class AppColors {
 
   static const textLight = Color(0xFF000000);
   static const textDark = Color(0xFFFFFFFF);
+
+  static const focused = Colors.black87;
+  static const unFocused = Colors.black45;
+
 }
 
 // we use a static getter to dynamically get the correct color value
